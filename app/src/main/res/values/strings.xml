@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">NotesApp</string>
+    <string name="create_note">Create Note</string>
+    <string name="title_hint">Enter Note Tilte</string>
+    <string name="note_entry_hint">Type the notes</string>
+</resources>
