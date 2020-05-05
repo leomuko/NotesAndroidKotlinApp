@@ -11,6 +11,7 @@ import com.example.notesapp.helpers.onItemClickListener
 import com.example.notesapp.helpers.sampleData
 import com.example.notesapp.helpers.theAdapter
 import com.example.notesapp.models.NotesData
+import kotlinx.android.synthetic.main.activity_notes_list.*
 
 class NotesList : AppCompatActivity(), onItemClickListener {
     private lateinit var binding: ActivityNotesListBinding
@@ -35,5 +36,11 @@ class NotesList : AppCompatActivity(), onItemClickListener {
         val data = sampleData.NOTES.get(position)
         intent.putExtra("notes", data )
         startActivity(intent)
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        binding.recyclerView.adapter = theAdapter(sampleData.NOTES,this)
+        binding.recyclerView.invalidate()
     }
 }
