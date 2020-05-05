@@ -16,20 +16,23 @@ class EditNote : AppCompatActivity() {
     private lateinit var binding: ActivityEditNoteBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       binding=  DataBindingUtil.setContentView(this, R.layout.activity_edit_note)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_note)
 
         var noteToEdit: NotesData? = intent.getParcelableExtra("noteToEdit")
         binding.noteContent.setText(noteToEdit?.noteContent)
         binding.noteTitle.setText(noteToEdit?.title)
 
         binding.saveButton.setOnClickListener {
-            var newNote: NotesData? = noteToEdit
-            newNote?.noteContent = binding.noteContent.text.toString()
-            newNote?.title = binding.noteTitle.text.toString()
-            if (newNote != null) {
-                sampleData.editNote(newNote)
+            var newNote = NotesData()
+            if (noteToEdit != null) {
+                newNote.id = noteToEdit.id
             }
-            Toast.makeText(this,"The note has been updated", Toast.LENGTH_SHORT).show()
+            newNote.noteContent = binding.noteContent.text.toString()
+            newNote.title = binding.noteTitle.text.toString()
+
+            sampleData.editNote(newNote)
+
+            Toast.makeText(this, "The note has been updated", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, NotesList::class.java)
             startActivity(intent)
         }
@@ -37,6 +40,7 @@ class EditNote : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
