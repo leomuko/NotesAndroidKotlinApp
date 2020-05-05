@@ -14,9 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
 
         <TextView
             android:id="@+id/the_Note"
@@ -27,25 +25,7 @@
             android:textColor="#303030"
             android:textSize="24sp" />
 
-        <ImageView
-            android:id="@+id/edit_note_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="end"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_edit_black"
 
-            android:layout_toLeftOf="@id/delete_note_icon"/>
-            <ImageView
-                android:id="@+id/delete_note_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="end"
-                android:layout_margin="16dp"
-                android:src="@drawable/ic_delete_forever_"
-                android:layout_alignParentRight="true"
-                />
-        </RelativeLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
