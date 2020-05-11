@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.R
 import com.example.notesapp.database.NoteDatabaseModel
 import com.example.notesapp.databinding.ActivityNotesListBinding
@@ -57,6 +59,21 @@ class NotesList : AppCompatActivity(), OnItemClickListener {
 
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
+
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT.or(ItemTouchHelper.RIGHT)){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+               return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                noteViewModel.delete(adapter.getNoteAt(viewHolder.adapterPosition))
+                Toast.makeText(baseContext, "Note Deleted", Toast.LENGTH_SHORT).show()
+            }
+        }).attachToRecyclerView(binding.recyclerView)
 
     }
 

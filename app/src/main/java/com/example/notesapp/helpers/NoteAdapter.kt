@@ -34,6 +34,10 @@ class NoteAdapter internal constructor
         notifyDataSetChanged()
     }
 
+    fun getNoteAt(position: Int): NoteDatabaseModel{
+        return recyclerList[position]
+    }
+
 
     class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var noteTitle: TextView = itemView.the_Note
