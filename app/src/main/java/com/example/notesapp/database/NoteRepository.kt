@@ -1,9 +1,7 @@
 package com.example.notesapp.database
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 
 class NoteRepository(application: Application)  {
@@ -12,7 +10,7 @@ class NoteRepository(application: Application)  {
     private var uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var noteDao: NoteDatabaseDao
 
-    private var allNotes: LiveData<List<DatabaseModel>>
+    private var allNotes: LiveData<List<NoteDatabaseModel>>
     init {
         val database: NoteDatabase = NoteDatabase.getInstance(
             application.applicationContext
@@ -20,43 +18,43 @@ class NoteRepository(application: Application)  {
         noteDao = database.noteDao
         allNotes = noteDao.getAllNotes()
     }
-    fun insertNewNote(note: DatabaseModel){
+    fun insertNewNote(note: NoteDatabaseModel){
         uiScope.launch {
-            val newNote = DatabaseModel()
-            insert(newNote)
+
+            insert(note)
         }
     }
-    private suspend fun insert(note: DatabaseModel){
+    private suspend fun insert(note: NoteDatabaseModel){
         withContext(Dispatchers.IO){
             noteDao.insert(note)
         }
 
     }
 
-    fun updateNote(note: DatabaseModel){
+    fun updateNote(id: Int, title: String, details: String){
         uiScope.launch {
-            upDate(note)
+            upDate(id, title, details)
         }
 
     }
-    private suspend fun upDate(note: DatabaseModel){
+    private suspend fun upDate(id: Int, title: String, details: String){
         withContext(Dispatchers.IO){
-            noteDao.update(note)
+            noteDao.update(id,title,details)
         }
     }
 
-    fun deleteNote(note: DatabaseModel){
+    fun deleteNote(note: NoteDatabaseModel){
         uiScope.launch {
             delete(note)
         }
     }
 
-    private suspend fun delete(note: DatabaseModel){
+    private suspend fun delete(note: NoteDatabaseModel){
         withContext(Dispatchers.IO){
             noteDao.delete(note)
         }
     }
-    fun getAllNotes(): LiveData<List<DatabaseModel>>{
+    fun getAllNotes(): LiveData<List<NoteDatabaseModel>>{
         return allNotes
     }
 

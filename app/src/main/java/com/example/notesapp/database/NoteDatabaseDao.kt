@@ -1,5 +1,6 @@
 package com.example.notesapp.database
 
+import android.icu.text.CaseMap
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -7,16 +8,18 @@ import androidx.room.*
 interface NoteDatabaseDao {
 
     @Insert
-    fun insert(note: DatabaseModel)
+    fun insert(note: NoteDatabaseModel)
 
-    @Update
-    fun update(note: DatabaseModel)
+//    @Update
+//    fun update(note: NoteDatabaseModel)
 
     @Delete
-    fun delete(note: DatabaseModel)
+    fun delete(note: NoteDatabaseModel)
 
     @Query("SELECT * FROM notes_table ORDER BY noteId ASC")
-    fun getAllNotes(): LiveData<List<DatabaseModel>>
+    fun getAllNotes(): LiveData<List<NoteDatabaseModel>>
 
+    @Query("UPDATE notes_table SET note_title = :title, note_details = :details WHERE noteId = :id ")
+    fun update (id :Int, title: String, details: String)
 
 }
