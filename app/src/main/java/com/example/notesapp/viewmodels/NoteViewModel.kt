@@ -25,5 +25,8 @@ class NoteViewModel(application: Application): AndroidViewModel(application) {
     fun getAllNotes(): LiveData<List<NoteDatabaseModel>>{
         return allNotes
     }
+    fun deleteAllNotes(){
+        repository.deleteAllNotes()
+    }
 
 }

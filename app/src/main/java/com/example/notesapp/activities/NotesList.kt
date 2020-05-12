@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -83,6 +85,26 @@ class NotesList : AppCompatActivity(), OnItemClickListener {
         intent.putExtra("notes", item)
 
         startActivityForResult(intent, EDIT_NOTE_REQUEST)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.delete_option_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item?.itemId){
+            R.id.delete_all_notes -> {
+                noteViewModel.deleteAllNotes()
+                Toast.makeText(this, "All notes deleted!", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else ->{
+                super.onOptionsItemSelected(item)
+            }
+        }
+
+
     }
 
 

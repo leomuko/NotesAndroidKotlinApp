@@ -22,4 +22,7 @@ interface NoteDatabaseDao {
     @Query("UPDATE notes_table SET note_title = :title, note_details = :details WHERE noteId = :id ")
     fun update (id :Int, title: String, details: String)
 
+    @Query("DELETE FROM notes_table")
+    fun deleteAllNotes()
+
 }

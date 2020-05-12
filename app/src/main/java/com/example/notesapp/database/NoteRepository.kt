@@ -57,6 +57,16 @@ class NoteRepository(application: Application)  {
     fun getAllNotes(): LiveData<List<NoteDatabaseModel>>{
         return allNotes
     }
+    fun deleteAllNotes(){
+        uiScope.launch {
+            deleteAll()
+        }
+    }
+    private suspend fun deleteAll(){
+        withContext(Dispatchers.IO){
+            noteDao.deleteAllNotes()
+        }
+    }
 
 
 }
