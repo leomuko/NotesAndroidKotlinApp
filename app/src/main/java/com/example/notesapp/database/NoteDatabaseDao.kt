@@ -24,5 +24,4 @@ interface NoteDatabaseDao {
 
     @Query("DELETE FROM notes_table")
     fun deleteAllNotes()
-
 }
