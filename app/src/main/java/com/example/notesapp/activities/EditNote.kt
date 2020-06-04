@@ -19,30 +19,25 @@ class EditNote : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditNoteBinding
     private lateinit var noteViewModel: NoteViewModel
-
+    var noteToEdit: NoteDatabaseModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_note)
         noteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
 
 
-        var noteToEdit: NoteDatabaseModel? = intent.getParcelableExtra("notes")
+        noteToEdit  = intent.getParcelableExtra("notes")
         binding.noteContent.setText(noteToEdit?.note_details)
         binding.noteTitle.setText(noteToEdit?.note_title)
 
-        binding.saveButton.setOnClickListener {
-            if (noteToEdit != null) {
-                saveNote(noteToEdit)
-            }
-
-        }
 
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        //onBackPressed()
+        if (noteToEdit != null) saveNote(noteToEdit!!)
         return true
     }
     private fun saveNote(note: NoteDatabaseModel){

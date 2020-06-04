@@ -24,26 +24,21 @@ class CreateNote : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_note)
 
 
-
-
-        binding.saveButton.setOnClickListener {
-            saveNote()
-        }
-
-
-
-
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        //onBackPressed()
+        saveNote()
         return true
     }
 
-    private fun saveNote(){
-        if(binding.noteTitle.text.toString().trim().isBlank() || binding.noteContent.text.toString().trim().isBlank()){
-            Toast.makeText(this,"Can not insert empty note", Toast.LENGTH_SHORT).show()
+    private fun saveNote() {
+        if (binding.noteTitle.text.toString().trim()
+                .isBlank() || binding.noteContent.text.toString().trim().isBlank()
+        ) {
+            Toast.makeText(this, "Can not insert empty note", Toast.LENGTH_SHORT).show()
             return
         }
         val data = Intent().apply {

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -41,6 +42,18 @@ class NotesList : AppCompatActivity(), OnItemClickListener {
 
         var adapter = NoteAdapter(this)
         binding.recyclerView.adapter = adapter
+        binding.searchNotes.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+
+        })
 
         noteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
 
