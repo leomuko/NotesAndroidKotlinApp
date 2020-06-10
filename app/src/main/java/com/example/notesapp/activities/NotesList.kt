@@ -34,26 +34,14 @@ class NotesList : AppCompatActivity(), OnItemClickListener {
     private lateinit var binding: ActivityNotesListBinding
 
     private lateinit var noteViewModel: NoteViewModel
-
+    var adapter = NoteAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_notes_list)
 
-        var adapter = NoteAdapter(this)
+
         binding.recyclerView.adapter = adapter
-        binding.searchNotes.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter.filter(newText)
-                return false
-            }
-
-        })
 
         noteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
 
@@ -102,6 +90,22 @@ class NotesList : AppCompatActivity(), OnItemClickListener {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.delete_option_menu, menu)
+
+        val searchItem = menu!!.findItem(R.id.search_for_notes)
+        val searchView = searchItem.actionView as androidx.appcompat.widget.SearchView
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+
+        })
+
         return true
     }
 
@@ -147,10 +151,12 @@ class NotesList : AppCompatActivity(), OnItemClickListener {
                     updateNote.note_details
                 )
             }
-            Toast.makeText(this, "Note Edited", Toast.LENGTH_SHORT).show()
+          //  Toast.makeText(this, "Note Edited", Toast.LENGTH_SHORT).show()
             Log.i("Edit", updateNote.noteId.toString())
         } else {
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show()
+           // Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 }

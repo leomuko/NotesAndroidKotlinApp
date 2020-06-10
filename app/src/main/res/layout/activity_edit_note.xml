@@ -6,7 +6,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.EditNote">
+        tools:context=".activities.EditNote"
+        android:id="@+id/edit_note_main_layout">
 
         <TextView
             android:id="@+id/textView4"
@@ -24,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <com.androidessence.lib.RichTextView
             android:id="@+id/note_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,15 +39,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            android:background="@null"/>
 
         <ScrollView
             android:id="@+id/note_scroll"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/note_title">
 
@@ -69,9 +70,68 @@
                     android:inputType="textMultiLine"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/note_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/note_title"
+                    android:background="@null"/>
             </LinearLayout>
         </ScrollView>
+      <!--  <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/bold_button"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_format_bold_black"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageView
+                android:id="@+id/italic_button"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_format_italic_black"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageView
+                android:id="@+id/underline_button"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_format_underlined_black"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageView
+                android:id="@+id/strikethrough_button"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_strikethrough_s_black"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageView
+                android:id="@+id/bulleted_button"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_format_list_bulleted_black"
+                tools:ignore="VectorDrawableCompat" />
+            <ImageView
+                android:id="@+id/image_button"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_image_black"
+                tools:ignore="VectorDrawableCompat" />
+        </LinearLayout> -->
+
 
 
 

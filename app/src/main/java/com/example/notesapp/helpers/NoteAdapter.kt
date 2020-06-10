@@ -48,10 +48,12 @@ class NoteAdapter internal constructor
 
     class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var noteTitle: TextView = itemView.the_Note
+        var noteDetails: TextView = itemView.the_Note_details
+        var noteLayout = itemView.note_layout
 
         fun initialize(item: NoteDatabaseModel, action: OnItemClickListener) {
             noteTitle.text = item.note_title
-
+            noteDetails.text = item.note_details
             itemView.setOnClickListener {
                 action.onItemClick(item, adapterPosition)
             }

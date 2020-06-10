@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/more_action"
+        android:icon="@drawable/ic_more_horiz_black"
+        android:title="Options"
+        app:showAsAction="always">
+        <menu>
+            <item android:id="@+id/go_to_notes_list"
+                android:title="Go to notes List" />
+            <item android:id="@+id/delete_note"
+                android:title="Delete Note"
+                />
+
+        </menu>
+    </item>
+</menu>

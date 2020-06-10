@@ -11,9 +11,10 @@
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="5dp">
     <LinearLayout
+        android:id="@+id/note_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
 
         <TextView
@@ -24,6 +25,14 @@
             android:text="Note Title"
             android:textColor="#303030"
             android:textSize="24sp" />
+        <TextView
+            android:id="@+id/the_Note_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="note details"
+            android:textSize="20sp"
+            android:maxLines="4"/>
 
 
     </LinearLayout>
